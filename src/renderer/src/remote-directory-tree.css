@@ -1,0 +1,175 @@
+/* A fixed root and one scrolling, in-place tree. Uses Conlaude theme tokens. */
+.remote-directory-browser.remote-directory-tree {
+  color: var(--text);
+  font: 14px/1.5 var(--interface-font-family, system-ui);
+}
+.remote-directory-tree .remote-tree-header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 0 0 auto;
+  min-height: 38px;
+  padding: 0 6px 0 12px;
+  border-bottom: 1px solid var(--line-soft);
+}
+.remote-tree-root-icon {
+  flex: none;
+  color: var(--muted);
+}
+.remote-directory-tree .remote-tree-path {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+.remote-tree-path input {
+  width: 0;
+  min-width: 0;
+  flex: 1;
+  padding: 5px 4px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-overflow: ellipsis;
+}
+.remote-tree-path input:focus {
+  outline: 1px solid var(--accent);
+  background: var(--field-bg);
+}
+.remote-tree-path button,
+.remote-directory-tree .icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.remote-directory-tree button:hover:not(:disabled),
+.remote-directory-tree button[aria-pressed='true'] {
+  background: var(--line-soft);
+  color: var(--text);
+}
+.remote-directory-tree button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+.remote-directory-tree button:disabled {
+  opacity: .45;
+  cursor: default;
+}
+.remote-tree-filter {
+  display: flex;
+  align-items: center;
+  flex: none;
+  gap: 3px;
+  padding: 5px 6px 4px 13px;
+  color: var(--muted);
+}
+.remote-tree-filter > svg {
+  flex: none;
+}
+.remote-tree-filter input {
+  flex: 1;
+  width: 0;
+  min-width: 0;
+  padding: 5px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+}
+.remote-tree-filter input:focus-visible {
+  outline: 1px solid var(--accent);
+}
+.remote-directory-tree .remote-tree-body {
+  flex: 1;
+  min-height: 0;
+  padding: 4px 4px 8px 8px;
+  margin-inline-end: 2px;
+  overflow: auto;
+  scrollbar-gutter: stable;
+}
+.remote-directory-tree .remote-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  width: 100%;
+  min-width: 0;
+  padding-block: 5px;
+  padding-inline-end: 10px;
+  border: 0;
+  border-radius: 5px;
+  color: var(--text-secondary, var(--text));
+  background: transparent;
+  font: inherit;
+}
+.remote-directory-tree .remote-tree-row[data-selected='true'] {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+.remote-directory-tree .remote-tree-row .remote-file-name {
+  font: inherit;
+  min-width: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.remote-directory-tree .remote-tree-row > svg {
+  flex: none;
+  color: var(--muted);
+}
+.remote-directory-tree .remote-tree-row .remote-tree-file-icon {
+  color: var(--accent);
+  opacity: .8;
+}
+.remote-tree-chevron {
+  margin-inline-start: auto;
+  opacity: .65;
+}
+.remote-tree-note {
+  padding: 5px 10px;
+  color: var(--muted);
+  font: inherit;
+  overflow-wrap: anywhere;
+}
+.remote-tree-note-error {
+  color: var(--red, #bd3535);
+}
+.remote-tree-note button {
+  margin-inline-start: 6px;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.remote-tree-filter-note {
+  flex: none;
+  padding: 7px 12px;
+  border-top: 1px solid var(--line-soft);
+  color: var(--muted);
+  font: inherit;
+}
+@container file-directory (max-width: 240px) {
+  .remote-tree-root-icon,
+  .remote-tree-chevron {
+    display: none;
+  }
+  .remote-directory-tree .remote-tree-header {
+    padding-inline-start: 8px;
+  }
+}
