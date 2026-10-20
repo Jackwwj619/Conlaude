@@ -1,0 +1,122 @@
+.timeline-shell.has-conversation-outline .timeline-inner {
+  /* Reserve the rail even in full-width reading and narrow split panes. */
+  width: calc(100% - 2 * max(48px, var(--content-gutter, 24px)));
+}
+
+.conversation-outline {
+  position: absolute;
+  z-index: 4;
+  inset: 16px 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.conversation-outline-rail {
+  position: relative;
+  width: 48px;
+  max-height: 100%;
+  padding: 2px 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  pointer-events: auto;
+}
+
+.conversation-outline-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.conversation-outline-item {
+  display: flex;
+  align-items: center;
+  width: 48px;
+  height: 14px;
+  padding: 0 0 0 12px;
+  border: 0;
+  border-radius: 3px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.conversation-outline-item:focus-visible {
+  outline: 1px solid var(--focus);
+  outline-offset: -1px;
+}
+
+.conversation-outline-line {
+  display: block;
+  width: var(--outline-line-width, 10px);
+  height: 2px;
+  flex: none;
+  border-radius: 1px;
+  background: color-mix(in srgb, var(--text) 25%, transparent);
+  transition:
+    width 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background-color 150ms ease;
+}
+
+.conversation-outline-item[aria-current='location'] .conversation-outline-line {
+  background: color-mix(in srgb, var(--text) 65%, transparent);
+}
+
+.conversation-outline-item[data-preview='true'] .conversation-outline-line {
+  background: var(--text);
+}
+
+.conversation-outline-preview {
+  position: absolute;
+  left: 54px;
+  width: min(400px, calc(100% - 70px));
+  max-height: 100%;
+  padding: 12px 14px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel);
+  box-shadow: 0 5px 20px color-mix(in srgb, var(--text) 9%, transparent);
+  color: var(--text);
+  font-size: 13px;
+  line-height: 1.65;
+  pointer-events: auto;
+  animation: outline-preview-in 120ms ease-out;
+}
+
+.conversation-outline-preview strong {
+  display: block;
+  overflow: hidden;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversation-outline-preview p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  margin: 5px 0 0;
+  overflow: hidden;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+@keyframes outline-preview-in {
+  from {
+    opacity: 0;
+    transform: translateX(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .conversation-outline-line {
+    transition: none;
+  }
+  .conversation-outline-preview {
+    animation: none;
+  }
+}

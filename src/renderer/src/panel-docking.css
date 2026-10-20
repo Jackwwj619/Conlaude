@@ -1,0 +1,342 @@
+/* One terminal instance; explicit docking never changes with viewport width. */
+.app-shell.task-workspace .workspace-frame.dock-layout {
+  container: workspace-layout / inline-size;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 28px;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.app-shell.task-workspace .workspace-frame.dock-layout[hidden] {
+  display: none;
+}
+.app-shell.task-workspace .workspace-frame.dock-layout.dock-right {
+  grid-template-columns: minmax(0, 1fr) minmax(
+      min(300px, 50%),
+      min(var(--dock-width, 46%), calc(100% - min(280px, 40%)))
+    );
+}
+.app-shell.task-workspace .workspace-frame.dock-layout.dock-bottom {
+  grid-template-rows:
+    minmax(160px, 1fr) minmax(140px, min(var(--terminal-panel-height, 280px), 55%))
+    28px;
+}
+.app-shell.task-workspace .workspace-frame.dock-layout > .workspace {
+  grid-column: 1;
+  grid-row: 1;
+  width: auto;
+  min-width: 0;
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+}
+.app-shell.task-workspace .workspace-frame.dock-layout > .workspace > .workspace-notices {
+  grid-row: 1;
+  grid-column: 1;
+}
+.app-shell.task-workspace .workspace-frame.dock-layout > .workspace > .conversation-area {
+  grid-row: 2;
+  grid-column: 1;
+  display: flex;
+  min-height: 0;
+}
+.app-shell.task-workspace .workspace-frame.dock-layout > .status-bar {
+  grid-row: -2 / -1;
+  grid-column: 1 / -1;
+}
+.app-shell.task-workspace .workspace-frame.dock-layout .dock-header {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 8px;
+  min-height: 34px;
+  padding: 2px 8px;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--panel);
+  color: var(--text-secondary);
+}
+.app-shell.task-workspace .dock-header .remote-file-tab {
+  display: none;
+}
+.app-shell.task-workspace .dock-header .icon-button {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+.app-shell.task-workspace .dock-header .terminal-actions {
+  margin-left: auto;
+  gap: 4px;
+}
+.app-shell.task-workspace .dock-header .terminal-note {
+  display: none;
+}
+.app-shell.task-workspace .dock-header .control-toggle {
+  font-size: 0;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  gap: 0;
+  border-radius: 6px;
+}
+.app-shell.task-workspace .dock-layout .terminal-control-bar {
+  display: none;
+}
+.app-shell.task-workspace .dock-layout .remote-file-view-switch button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+@media (max-width: 650px) {
+  .dock-tabs button {
+    padding-inline: 5px;
+  }
+}
+/* A stable shared dock owns the boundary and header for both tools. */
+.panel-dock {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  border-left: 1px solid var(--line);
+  background: var(--panel);
+}
+.panel-dock-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.app-shell.task-workspace .panel-dock-header {
+  height: 32px;
+  min-height: 32px;
+  box-sizing: border-box;
+  z-index: 2;
+}
+.panel-dock-close {
+  margin-left: auto;
+}
+.panel-dock-sizer {
+  position: absolute;
+  inset: 0 auto 0 -3px;
+  width: 6px;
+  z-index: 5;
+  cursor: col-resize;
+  touch-action: none;
+}
+.panel-dock-sizer:hover,
+.panel-dock-sizer:focus-visible {
+  background: var(--accent-line);
+}
+.app-shell.task-workspace .panel-dock .terminal-drawer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  border: 0;
+  background: var(--panel);
+}
+.app-shell.task-workspace .panel-dock .terminal-viewport {
+  flex: 1;
+  min-height: 0;
+}
+.app-shell.task-workspace .panel-dock .remote-files-panel {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  border: 0;
+  animation: none;
+}
+.panel-dock[data-bottom='true'],
+.panel-dock[data-bottom='true'] > .panel-dock-body {
+  display: contents;
+}
+.app-shell.task-workspace .panel-dock[data-bottom='true'] .terminal-drawer {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  border-top: 1px solid var(--line);
+}
+.panel-dock[data-bottom='true'] > .panel-dock-header {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
+  border-left: 1px solid var(--line);
+}
+.app-shell.task-workspace .panel-dock[data-bottom='true'] .remote-files-panel {
+  grid-column: 2;
+  grid-row: 1;
+  padding-top: 0;
+  border-left: 1px solid var(--line);
+}
+.panel-dock[data-bottom='true'] > .panel-dock-sizer {
+  position: relative;
+  inset: auto;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: start;
+}
+.app-shell.task-workspace .panel-dock .terminal-sash {
+  display: block;
+  inset: 0 0 auto;
+  width: auto;
+  height: 6px;
+  cursor: row-resize;
+}
+.app-shell.task-workspace .panel-dock [hidden],
+.app-shell.task-workspace .panel-dock[hidden] {
+  display: none !important;
+}
+.panel-visibility-controls {
+  display: flex;
+  flex-shrink: 0;
+  margin-left: auto;
+  -webkit-app-region: no-drag;
+}
+.panel-visibility-controls .sidebar-visibility-toggle:last-child {
+  margin-right: 0;
+}
+.empty-conversation-logo {
+  width: 56px;
+  height: 56px;
+}
+@container workspace-layout (max-width: 600px) {
+  .files-open > .workspace {
+    visibility: hidden;
+  }
+  .files-open > .panel-dock {
+    grid-column: 1 / -1;
+  }
+  .files-open .panel-dock[data-bottom='true'] > .panel-dock-header,
+  .files-open .panel-dock[data-bottom='true'] > .panel-dock-sizer,
+  .app-shell.task-workspace .files-open .panel-dock[data-bottom='true'] .remote-files-panel {
+    grid-column: 1 / -1;
+  }
+}
+.task-sidebar [draggable='true'] {
+  position: relative;
+}
+.task-sidebar [data-dragging='true'] {
+  opacity: 0.45;
+}
+.task-sidebar [data-drop-edge]::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+  pointer-events: none;
+}
+.task-sidebar [data-drop-edge='before']::after {
+  top: 0;
+}
+.task-sidebar [data-drop-edge='after']::after {
+  bottom: 0;
+}
+
+.dock-header .control-toggle > svg {
+  flex-shrink: 0;
+}
+
+.panel-dock:not([data-bottom='true']) {
+  padding-right: 36px;
+}
+.panel-tool-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 0;
+  border-left: 1px solid var(--line-soft);
+  background: var(--panel);
+  z-index: 4;
+}
+.panel-tool-rail .icon-button {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+.panel-tool-rail .icon-button[aria-pressed='true'] {
+  background: var(--line-soft);
+}
+.panel-tool-rail .panel-dock-close {
+  margin: auto 0 0;
+}
+.panel-dock[data-bottom='true'] > .panel-tool-rail {
+  position: relative;
+  grid-column: 2;
+  grid-row: 1;
+  justify-self: end;
+}
+.panel-dock[data-bottom='true'] > .panel-dock-header,
+.app-shell.task-workspace .panel-dock[data-bottom='true'] .remote-files-panel {
+  margin-right: 36px;
+}
+@container workspace-layout (max-width: 600px) {
+  .files-open .panel-dock[data-bottom='true'] > .panel-tool-rail {
+    grid-column: 1 / -1;
+  }
+}
+
+.panel-tool-rail .panel-maximize {
+  margin-top: auto;
+}
+.panel-tool-rail .panel-dock-close {
+  margin-top: 0;
+}
+.app-shell.task-workspace .workspace-frame.dock-layout[data-maximized] {
+  position: fixed;
+  inset: var(--titlebar-height) 0 0;
+  z-index: 30;
+  background: var(--panel);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) 28px;
+}
+.dock-layout[data-maximized] > .workspace,
+.dock-layout[data-maximized] .panel-dock-sizer,
+.dock-layout[data-maximized] .terminal-sash {
+  display: none !important;
+}
+.dock-layout[data-maximized='right'] > .panel-dock,
+.dock-layout[data-maximized='right'] .panel-dock[data-bottom='true'] > .panel-dock-header,
+.dock-layout[data-maximized='right'] .panel-dock[data-bottom='true'] > .panel-tool-rail,
+.app-shell.task-workspace
+  .dock-layout[data-maximized='right']
+  .panel-dock[data-bottom='true']
+  .remote-files-panel {
+  grid-column: 1;
+}
+.dock-layout[data-maximized='right'] .panel-dock[data-bottom='true'] .terminal-drawer,
+.dock-layout[data-maximized='bottom'] .panel-dock-header,
+.dock-layout[data-maximized='bottom'] .panel-tool-rail,
+.dock-layout[data-maximized='bottom'] .remote-files-panel {
+  display: none !important;
+}
+.app-shell.task-workspace .dock-layout[data-maximized='bottom'] .panel-dock .terminal-drawer {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.remote-files-shell > .remote-files-navigation,
+.remote-files-shell > .panel-dock-header {
+  flex-shrink: 0;
+}
+
+.dock-tabs button:focus-visible {
+  outline-offset: -2px;
+  border-radius: 4px;
+}

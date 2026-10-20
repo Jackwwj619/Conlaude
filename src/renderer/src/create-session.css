@@ -1,0 +1,132 @@
+.create-session-modal > form {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.create-session-modal .modal-header,
+.create-session-modal .modal-footer {
+  flex-shrink: 0;
+}
+
+.create-directory-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.create-directory-field > small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.create-directory-input {
+  display: flex;
+  gap: 8px;
+}
+
+.create-directory-input input {
+  min-width: 0;
+}
+
+.create-directory-input > button {
+  flex-shrink: 0;
+}
+
+.directory-picker {
+  margin-top: 4px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-soft);
+  font-size: 12px;
+}
+
+.directory-picker-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.directory-picker-path {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text-secondary);
+}
+
+.directory-picker-list {
+  max-height: 180px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  list-style: none;
+  margin: 0;
+  padding: 4px;
+}
+
+.directory-picker-list button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  padding: 8px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+
+.directory-picker-list button:hover {
+  background: var(--accent-soft);
+}
+
+.directory-picker-list button span {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.directory-picker-list svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.directory-picker-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 12px;
+  color: var(--muted);
+}
+
+.directory-picker-error {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  padding: 12px;
+  overflow-wrap: anywhere;
+}
+
+.directory-picker-error p {
+  margin: 0;
+}
+
+.directory-picker-error small {
+  color: var(--muted);
+}
+
+.directory-picker-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px;
+  border-top: 1px solid var(--line-soft);
+}

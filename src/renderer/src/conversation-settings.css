@@ -1,0 +1,15 @@
+.timeline-shell .message-body {
+  --markdown-h2-size: calc(var(--reply-font-size, 14px) * 1.43);
+}
+.timeline-shell .message-body p,
+.timeline-shell .message-body li,
+.timeline-shell .message-body table {
+  font-size: var(--reply-font-size, 14px);
+  line-height: var(--reply-line-height, 1.75);
+}
+.timeline-shell .message-body h3 {
+  font-size: calc(var(--reply-font-size, 14px) * 1.14);
+}
+.timeline-shell .message-body h4 {
+  font-size: var(--reply-font-size, 14px);
+}

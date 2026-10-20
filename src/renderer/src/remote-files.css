@@ -1,0 +1,529 @@
+/* File tabs, actions and the trailing directory sidebar toggle share one header. */
+.remote-files-panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--panel);
+  container: remote-file-panel / inline-size;
+}
+.remote-files-panel [hidden] {
+  display: none !important;
+}
+.app-shell.task-workspace .workspace-frame.dock-layout .remote-files-panel .file-workspace-header {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  height: 36px;
+  min-height: 36px;
+  background: var(--panel-soft);
+  border-bottom: 1px solid var(--line);
+}
+.file-workspace-header > .file-directory-toggle {
+  flex-shrink: 0;
+  margin-inline: 4px;
+}
+.file-directory-toggle[aria-pressed='true'] {
+  color: var(--accent);
+  background: var(--line-soft);
+}
+.file-workspace-empty-title {
+  flex: 1;
+  padding-left: 12px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.remote-file-menu {
+  min-width: 0;
+}
+.file-workspace-actions {
+  flex-shrink: 0;
+  padding-inline: 3px;
+  border-left: 1px solid var(--line-soft);
+}
+.file-workspace-actions .session-row-actions {
+  position: static;
+  opacity: 1;
+  pointer-events: auto;
+  display: flex;
+}
+.file-workspace-actions .session-row-actions > button {
+  opacity: 1;
+}
+.file-workspace-header .dock-tabs {
+  display: flex;
+  align-self: stretch;
+  align-items: stretch;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.dock-tabs::-webkit-scrollbar {
+  display: none;
+}
+.dock-document-tab {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  max-width: min(210px, 100%);
+  min-width: 80px;
+  border-inline-end: 1px solid var(--line-soft);
+  border-bottom: 2px solid transparent;
+}
+.dock-document-tab[data-selected='true'] {
+  border-bottom-color: var(--accent);
+  background: var(--panel);
+}
+.dock-document-tab > .remote-file-menu {
+  flex: 1;
+}
+.dock-document-tab button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.dock-document-tab button[role='tab'] {
+  height: 33px;
+  width: 100%;
+  padding: 0 7px 0 10px;
+}
+.dock-document-tab button[aria-selected='true'] {
+  color: var(--text);
+}
+.dock-document-tab button > svg {
+  flex-shrink: 0;
+}
+.dock-document-tab button > span:not(.remote-file-dirty) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dock-document-tab .dock-document-close {
+  flex-shrink: 0;
+  padding: 3px;
+  margin-right: 4px;
+  border-radius: 4px;
+}
+.dock-document-close:hover {
+  background: var(--line-soft);
+  color: var(--text);
+}
+.dock-document-tab button:focus-visible {
+  outline-offset: -2px;
+}
+.remote-file-dirty {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.file-workspace-content,
+.file-workspace-browser,
+.remote-directory-browser,
+.remote-file-document,
+.remote-file-editor {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+.file-browser-navigation {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 10px 8px 6px;
+}
+.file-workspace-content[data-directory-sidebar='true'] {
+  flex-direction: row;
+}
+.file-workspace-content[data-directory-sidebar='true'] > .file-workspace-browser {
+  order: 2;
+  flex: 0 0 var(--file-directory-width);
+}
+.file-workspace-browser {
+  container: file-directory / inline-size;
+}
+.file-directory-sizer {
+  order: 1;
+  flex: 0 0 5px;
+  border-left: 1px solid var(--line);
+  cursor: col-resize;
+  touch-action: none;
+}
+.file-directory-sizer:hover,
+.file-directory-sizer:focus-visible {
+  background: var(--accent-line);
+}
+.file-directory-hint {
+  padding: 8px 12px 0;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+@container file-directory (max-width: 240px) {
+  .file-browser-footer > span:last-child,
+  .file-browser-columns > span:last-child,
+  .remote-file-size {
+    display: none;
+  }
+}
+.file-browser-navigation > button {
+  flex-shrink: 0;
+}
+.file-browser-path {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  height: 30px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--field-bg);
+  overflow: hidden;
+}
+.file-browser-path:focus-within {
+  border-color: var(--accent);
+}
+.file-browser-path input {
+  width: 0;
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: none;
+  padding: 0 8px;
+  background: transparent;
+  color: var(--text);
+  font-size: 12px;
+}
+.file-browser-path button {
+  flex-shrink: 0;
+  background: transparent;
+  color: var(--muted);
+  border: 0;
+  border-left: 1px solid var(--line-soft);
+  padding: 0 7px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.file-browser-filter {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 9px 8px;
+  color: var(--muted);
+}
+.file-browser-filter > svg {
+  flex-shrink: 0;
+}
+.file-browser-filter input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-size: 12px;
+  padding: 6px;
+}
+.file-browser-filter .icon-button {
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+}
+.file-browser-filter button[aria-pressed='true'] {
+  background: var(--line-soft);
+  color: var(--text);
+}
+.file-browser-columns {
+  display: flex;
+  justify-content: space-between;
+  padding: 7px 15px 7px 35px;
+  border-block: 1px solid var(--line-soft);
+  color: var(--muted);
+  font-size: 11px;
+  background: var(--panel-soft);
+}
+.file-browser-list {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 4px 6px;
+}
+.remote-file-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 34px;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 5px;
+  text-align: left;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.remote-file-row:hover {
+  background: var(--line-soft);
+}
+.remote-file-row[data-selected='true'] {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.remote-file-row > svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+.remote-file-row > svg.directory {
+  color: var(--accent);
+}
+.remote-file-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+.remote-file-size {
+  flex-shrink: 0;
+  text-align: right;
+  color: var(--muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.file-browser-footer,
+.remote-file-editor-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 4px 8px;
+  border-top: 1px solid var(--line-soft);
+  color: var(--muted);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+.file-browser-footer {
+  justify-content: space-between;
+}
+.remote-file-editor-footer {
+  background: var(--panel-soft);
+}
+.file-save-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-left: auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.remote-file-save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.remote-file-view-switch {
+  display: flex;
+  flex-shrink: 0;
+  padding: 2px;
+  gap: 2px;
+  background: var(--line-soft);
+  border-radius: 6px;
+}
+.remote-file-view-switch button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 4px 9px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.remote-file-view-switch button[aria-pressed='true'] {
+  color: var(--text);
+  background: var(--panel);
+  box-shadow: 0 1px 2px #0000000a;
+}
+.remote-file-preview {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  padding: 22px;
+  font-family: var(--reply-font-family);
+}
+.remote-file-text {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+  padding: 16px;
+  border: 0;
+  outline: none;
+  resize: none;
+  background: var(--panel);
+  color: var(--text);
+  font: 12px/1.7 var(--terminal-font-family, monospace);
+  tab-size: 2;
+}
+.remote-file-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+  color: var(--muted);
+}
+.remote-file-empty p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+.remote-file-empty small {
+  line-height: 1.7;
+}
+.remote-file-empty button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.remote-file-list-empty {
+  padding: 40px 16px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+.remote-file-error {
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--red);
+  background: var(--danger-soft);
+  overflow-wrap: anywhere;
+  flex-shrink: 0;
+}
+.discard-file-name {
+  overflow-wrap: anywhere;
+}
+.remote-file-spinning {
+  animation: remote-file-spin 1s linear infinite;
+}
+@keyframes remote-file-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .remote-file-spinning {
+    animation: none;
+  }
+}
+@container remote-file-panel (max-width: 380px) {
+  .remote-file-preview {
+    padding: 16px;
+  }
+  .dock-document-tab {
+    max-width: min(165px, 100%);
+  }
+  .remote-file-editor-footer {
+    gap: 5px;
+  }
+  .remote-file-view-switch button {
+    padding-inline: 7px;
+  }
+}
+
+.remote-image-preview {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+.remote-image-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 12px;
+}
+.remote-image-toolbar .quiet-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.remote-image-toolbar [aria-pressed='true'] {
+  background: var(--panel-soft);
+}
+.remote-image-viewport {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: auto;
+  display: flex;
+  padding: 12px;
+  background: var(--field-bg);
+}
+.remote-image-viewport img {
+  display: block;
+  flex-shrink: 0;
+  margin: auto;
+  object-fit: contain;
+}
+.remote-image-viewport img.fit {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+.remote-image-viewport img.scaled {
+  max-width: none;
+  max-height: none;
+  height: auto;
+}
+.remote-image-viewport [role='alert'] {
+  margin: auto;
+  padding: 20px;
+  color: var(--muted);
+}
+
+.remote-file-save[hidden] {
+  display: none;
+}
+
+/* Keep table words readable in a narrow preview; scroll the table locally. */
+.remote-file-preview.codex-content .markdown-content table {
+  width: max-content;
+  min-width: 100%;
+  max-width: none;
+}
+.remote-file-preview.codex-content .markdown-content :is(th, td),
+.remote-file-preview.codex-content .markdown-content :is(th, td) :is(code, a) {
+  word-break: normal;
+  overflow-wrap: normal;
+}
+.remote-file-preview.codex-content .markdown-content :is(th, td) {
+  max-width: 28rem;
+}

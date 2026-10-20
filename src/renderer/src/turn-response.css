@@ -1,0 +1,169 @@
+/* A quiet disclosure above each final answer, following the supplied reference. */
+.timeline-shell.codex-content .turn-activity {
+  margin: 0 0 20px;
+  overflow: visible;
+  border-radius: 0;
+  border-bottom: 0;
+  background: transparent;
+}
+.timeline-shell.codex-content .turn-summary {
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+  min-height: 34px;
+  padding: 5px 0 9px;
+  border-radius: 0;
+  border-bottom: 1px solid var(--line-soft);
+  background: transparent;
+  color: var(--muted);
+  font: 13px/1.5 var(--interface-font-family);
+  font-variant-numeric: tabular-nums;
+}
+.timeline-shell.codex-content .turn-summary:hover {
+  background: transparent;
+  color: var(--text);
+}
+.turn-summary:focus-visible {
+  outline: 2px solid var(--text-secondary);
+  outline-offset: 3px;
+}
+.turn-chevron {
+  flex: 0 0 auto;
+  transition: transform 160ms ease;
+}
+.turn-activity[open] > .turn-summary .turn-chevron {
+  transform: rotate(90deg);
+}
+.turn-issue-count {
+  margin-left: auto;
+  font-size: 11px;
+}
+.timeline-shell.codex-content .turn-activity-content {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 8px 0 12px;
+  border: 0;
+}
+.timeline-shell.codex-content .turn-activity-content .message {
+  margin-bottom: 4px;
+}
+.turn-empty-activity,
+.turn-timing-detail {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.turn-timing-detail {
+  font-variant-numeric: tabular-nums;
+}
+.response-problem {
+  margin: 0 0 24px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-soft);
+  color: var(--text-secondary);
+}
+.response-problem-heading {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: var(--text);
+  font-size: 13px;
+}
+.response-problem-heading code {
+  padding: 2px 6px;
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  font: 12px var(--code-font-family);
+  overflow-wrap: anywhere;
+}
+.response-problem p {
+  margin: 9px 0 0;
+  font-size: 13px;
+  line-height: 1.65;
+}
+.response-problem-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+.response-problem-actions button,
+.response-waiting button {
+  min-height: 30px;
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+.response-error-detail {
+  margin-top: 12px;
+  font-size: 12px;
+}
+.response-error-detail summary {
+  width: fit-content;
+  padding: 3px 0;
+  cursor: pointer;
+  color: var(--muted);
+}
+.response-error-detail pre {
+  max-height: 220px;
+  margin-bottom: 0;
+  overflow: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  user-select: text;
+  font: 12px/1.6 var(--code-font-family);
+}
+.response-waiting {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.timeline-shell.codex-content .message-footer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 24px;
+  margin-top: 12px;
+  color: var(--muted);
+}
+.timeline-shell.codex-content .message-footer:empty {
+  display: none;
+}
+.timeline-shell.codex-content .message-copy {
+  margin-top: 0;
+  min-width: 26px;
+  min-height: 26px;
+  justify-content: center;
+  border-radius: 6px;
+  color: var(--muted);
+}
+.timeline-shell.codex-content .message-copy:hover {
+  color: var(--text);
+  background: var(--panel-soft);
+}
+.timeline-shell.codex-content .message.user {
+  max-width: min(85%, 760px);
+}
+.timeline-inner > [data-timeline-id],
+.timeline-inner > .turn-response {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 160px;
+}
+
+.timeline-inner > .turn-response {
+  contain-intrinsic-size: auto 360px;
+}
+
+.timeline-inner > .timeline-match {
+  content-visibility: visible;
+}

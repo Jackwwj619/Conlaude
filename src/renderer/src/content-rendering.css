@@ -1,0 +1,487 @@
+/* Scope the transcript independently from the navigation and settings UI. */
+:is(.timeline-shell, .remote-file-preview).codex-content {
+  --content-code-bg: #f7f7f5;
+  --syntax-keyword: #a12b64;
+  --syntax-string: #166b50;
+  --syntax-number: #805600;
+  --syntax-function: #295fa8;
+  --syntax-comment: #71716d;
+}
+[data-theme='dark'] :is(.timeline-shell, .remote-file-preview).codex-content {
+  --content-code-bg: #242527;
+  --syntax-keyword: #d8a4de;
+  --syntax-string: #a1cfac;
+  --syntax-number: #e2bd87;
+  --syntax-function: #95bcf3;
+  --syntax-comment: #9a9d99;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .message {
+  display: block;
+  margin: 0 0 30px;
+  padding: 0;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .message.user {
+  width: fit-content;
+  max-width: 90%;
+  margin-left: auto;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 18px;
+  background: var(--user-bg);
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .message.problem {
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  background: var(--danger-soft);
+  border-radius: 4px;
+}
+.codex-content .user-message-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: var(--reply-font-size, 14px);
+  line-height: var(--reply-line-height, 1.75);
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .message-meta {
+  margin: 0 0 6px;
+  min-height: 0;
+}
+.codex-content .message-author {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .message-meta:has(> :only-child) {
+  margin: 0;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .message-copy {
+  display: inline-flex;
+  opacity: 1;
+  margin-top: 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--interface-font-family);
+}
+.codex-content .markdown-content {
+  min-width: 0;
+  font-size: var(--reply-font-size, 14px);
+  line-height: var(--reply-line-height, 1.75);
+  overflow-wrap: anywhere;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-content :is(p, li) {
+  color: var(--text);
+  font-size: inherit;
+  line-height: inherit;
+}
+.codex-content .markdown-content p {
+  margin: 0 0 1em;
+}
+.codex-content .markdown-content > :first-child {
+  margin-top: 0;
+}
+.codex-content .markdown-content > :last-child {
+  margin-bottom: 0;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content
+  .markdown-content
+  :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--text);
+  font-family: inherit;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1.5em 0 0.6em;
+  letter-spacing: -0.015em;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-content h1 {
+  font-size: 1.5em;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-content h2 {
+  font-size: 1.3em;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-content h3 {
+  font-size: 1.12em;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-content :is(h4, h5, h6) {
+  font-size: 1em;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-content > :first-child {
+  margin-top: 0;
+}
+.codex-content .markdown-content :is(ul, ol) {
+  margin: 0.5em 0 1em;
+  padding-left: 1.65em;
+}
+.codex-content .markdown-content li {
+  padding-left: 0.2em;
+  margin: 0.25em 0;
+}
+.codex-content .markdown-content li > :is(ul, ol) {
+  margin: 0.2em 0;
+}
+.codex-content .markdown-content li > p {
+  margin-bottom: 0.4em;
+}
+.codex-content .markdown-content .contains-task-list {
+  list-style: none;
+  padding-left: 0.3em;
+}
+.codex-content .task-list-item input {
+  margin: 0 0.6em 0 0;
+  accent-color: var(--text);
+}
+.codex-content .markdown-content blockquote {
+  margin: 1em 0;
+  padding: 0.2em 0 0.2em 1em;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+.codex-content .markdown-content blockquote > :last-child {
+  margin-bottom: 0;
+}
+.codex-content .markdown-content hr {
+  margin: 1.5em 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+}
+.codex-content .markdown-content :not(pre) > code {
+  font: 0.9em var(--code-font-family, var(--mono-font-family));
+  padding: 0.12em 0.32em;
+  border-radius: 4px;
+  background: var(--content-code-bg);
+  overflow-wrap: anywhere;
+}
+.codex-content .code-block {
+  min-width: 0;
+  margin: 1em 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--content-code-bg);
+  font-family: var(--code-font-family, var(--mono-font-family));
+}
+.codex-content .code-block-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 7px 12px;
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font: 12px var(--interface-font-family);
+}
+.codex-content .code-language {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.codex-content .code-block-actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 6px;
+  align-items: center;
+}
+.codex-content .content-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 0;
+  border-radius: 5px;
+  padding: 4px 6px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font: 12px var(--interface-font-family);
+}
+.codex-content .content-action:hover,
+.codex-content .content-action[aria-pressed='true'] {
+  background: var(--panel-soft);
+  color: var(--text);
+}
+.codex-content .content-action:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.codex-content .copy-control {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 100%;
+}
+.codex-content .copy-error {
+  color: var(--red);
+  font: 12px var(--interface-font-family);
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .code-block pre {
+  margin: 0;
+  padding: 15px 18px;
+  border: 0;
+  border-radius: 0;
+  max-height: 520px;
+  overflow: auto;
+  background: transparent;
+  color: var(--text);
+  font: var(--code-font-size, 13px) / var(--code-line-height, 1.65)
+    var(--code-font-family, var(--mono-font-family));
+  white-space: pre;
+  overflow-wrap: normal;
+  tab-size: 2;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .code-block pre.code-wrap {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .code-block pre code {
+  font: inherit;
+  background: transparent;
+  padding: 0;
+}
+.codex-content .hljs-comment,
+.codex-content .hljs-quote {
+  color: var(--syntax-comment);
+}
+.codex-content :is(.hljs-keyword, .hljs-selector-tag, .hljs-doctag, .hljs-meta) {
+  color: var(--syntax-keyword);
+}
+.codex-content :is(.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attr) {
+  color: var(--syntax-string);
+}
+.codex-content :is(.hljs-number, .hljs-literal, .hljs-symbol, .hljs-bullet) {
+  color: var(--syntax-number);
+}
+.codex-content :is(.hljs-title, .hljs-built_in, .hljs-type, .hljs-name, .hljs-section) {
+  color: var(--syntax-function);
+}
+.codex-content .hljs-deletion {
+  color: var(--red);
+}
+.codex-content .hljs-emphasis {
+  font-style: italic;
+}
+.codex-content .hljs-strong {
+  font-weight: 700;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1em 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.codex-content .markdown-content table {
+  border-collapse: collapse;
+  font-size: inherit;
+  line-height: inherit;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-content :is(th, td) {
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 10px 16px 10px 0;
+  background: transparent;
+  color: var(--text);
+  font-size: inherit;
+  line-height: inherit;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .markdown-content th {
+  font-weight: 600;
+  border-bottom-width: 2px;
+}
+.codex-content .markdown-file-link .content-action {
+  color: var(--blue);
+  font-family: var(--code-font-family, var(--mono-font-family));
+  font-size: 0.9em;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.codex-content .markdown-image-reference {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.codex-content .markdown-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.codex-content .katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4px 0;
+}
+.codex-content .mermaid-preview {
+  padding: 20px;
+  text-align: center;
+  overflow: auto;
+}
+.codex-content .mermaid-preview img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+}
+.codex-content .diagram-notice {
+  padding: 8px 16px;
+  color: var(--muted);
+  font: 12px var(--interface-font-family);
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .activity-group {
+  margin: 0 0 24px;
+  border: 0;
+  background: transparent;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .activity-group-header {
+  padding: 8px 0;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .activity-group-content {
+  gap: 4px;
+  margin: 6px 0 0 7px;
+  padding: 0 0 0 16px;
+  border-left: 1px solid var(--line);
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .tool-card {
+  margin: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+}
+:is(.timeline-shell, .remote-file-preview).codex-content .tool-card.error {
+  padding: 0;
+  border: 1px solid var(--danger-border);
+  background: var(--danger-soft);
+}
+.codex-content .tool-card-header {
+  grid-template-columns: 16px minmax(0, 1fr) 14px;
+  min-height: 30px;
+  gap: 7px;
+  padding: 6px 8px;
+  line-height: 18px;
+}
+.codex-content .tool-card-summary {
+  display: flex;
+  align-items: baseline;
+  min-width: 0;
+  gap: 8px;
+}
+.codex-content .tool-card-label {
+  flex-shrink: 0;
+  max-width: 45%;
+  white-space: nowrap;
+}
+.codex-content .tool-summary-detail {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--muted);
+  font: 11px var(--code-font-family, var(--mono-font-family));
+}
+.codex-content .tool-card-content {
+  padding: 4px 8px 8px 31px;
+}
+.codex-content .tool-card-content .code-block {
+  margin: 4px 0 12px;
+}
+.codex-content .activity-status .markdown-content {
+  font-family: var(--interface-font-family);
+  font-size: 12px;
+  line-height: 1.5;
+  margin-top: 3px;
+}
+.codex-content .activity-status {
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: 7px;
+  padding: 6px 8px;
+  background: color-mix(in srgb, var(--panel-soft) 55%, transparent);
+  font-size: 12px;
+  line-height: 18px;
+}
+.codex-content .activity-status.problem {
+  background: var(--warning-soft);
+}
+.codex-content .activity-status-icon {
+  width: 16px;
+  height: 18px;
+  border: 0;
+}
+.codex-content .activity-status-meta {
+  margin: 0;
+  line-height: 18px;
+}
+.codex-content .activity-status-meta span {
+  font-weight: 500;
+}
+.codex-content .activity-status-meta time {
+  font-size: 11px;
+}
+@media (max-width: 760px) {
+  :is(.timeline-shell, .remote-file-preview).codex-content .message.user {
+    max-width: 96%;
+  }
+  :is(.timeline-shell, .remote-file-preview).codex-content .code-block pre {
+    padding: 12px;
+  }
+  .codex-content .code-block-toolbar {
+    padding: 6px 8px;
+  }
+}
+
+.codex-content button.markdown-file-link,
+.codex-content .markdown-file-link .content-action {
+  display: inline;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  background: transparent;
+  color: light-dark(#0868be, #79b8ff);
+  font: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  cursor: pointer;
+  vertical-align: baseline;
+}
+.codex-content .markdown-file-link svg {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: -2px;
+}
+.codex-content .markdown-file-link:hover,
+.codex-content .markdown-file-link .content-action:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: transparent;
+}
+.codex-content code:has(> .file-reference) {
+  padding: 0;
+  background: transparent;
+  font: inherit;
+}
+.codex-content .file-reference {
+  font: inherit;
+}
+.codex-content .markdown-file-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.file-reference-tooltip {
+  position: fixed;
+  z-index: 1000;
+  width: max-content;
+  max-width: min(420px, calc(100vw - 24px));
+  padding: 9px 14px;
+  border-radius: 14px;
+  background: #171717;
+  color: #fafafa;
+  box-shadow: 0 4px 16px #0002;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 10,
+  "appearance": {
+    "density": "compact",
+    "fontSize": 12,
+    "accent": "blue",
+    "cornerRadius": 6,
+    "motion": "system",
+    "sidebarFontSize": 12,
+    "showServerAddress": false,
+    "showSessionCount": true,
+    "headerServer": "alias",
+    "showConnectionStatus": true,
+    "showViewLabels": false,
+    "contentPadding": 24,
+    "messageSpacing": 24,
+    "composerMaxHeight": 180
+  },
+  "profiles": [
+    {
+      "id": "example",
+      "label": "Example Server",
+      "host": "example",
+      "sshHost": "example",
+      "port": 22,
+      "authMode": "key",
+      "defaultSession": "claude-example",
+      "defaultCwd": "/home/user/project",
+      "claudePath": "~/.local/bin/claude"
+    }
+  ],
+  "currentProfileId": "example",
+  "theme": "light",
+  "interfaceFont": "mona-sans",
+  "replyFont": "mona-sans",
+  "code": {
+    "font": "jetbrains-mono",
+    "fontSize": 13,
+    "lineHeight": 1.65
+  },
+  "language": "zh-CN",
+  "terminal": {
+    "font": "cascadia-mono",
+    "fontSize": 14,
+    "scrollback": 30000,
+    "lineHeight": 1,
+    "cursorStyle": "block",
+    "cursorBlink": true
+  },
+  "composer": {
+    "sendShortcut": "Ctrl+Enter",
+    "maxCharacters": 200000,
+    "fontSize": 14,
+    "lineWrapping": true,
+    "historyLimit": 100,
+    "historyNavigation": "arrows"
+  },
+  "conversation": {
+    "widthMode": "limited",
+    "maxWidth": 820,
+    "fontSize": 14,
+    "lineHeight": 1.75,
+    "showTimestamps": true,
+    "expandActivity": false,
+    "autoScroll": false
+  },
+  "notifications": true,
+  "startMinimizedToTray": false,
+  "closeToTray": false,
+  "confirmExternalLinks": true
+}

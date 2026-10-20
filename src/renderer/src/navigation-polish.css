@@ -1,0 +1,109 @@
+/* Compact task navigation: one quiet hierarchy, with color reserved for state. */
+.task-sidebar .sidebar-search:focus-within {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--focus) 10%, transparent);
+}
+.sidebar-search-help {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 0 5px 9px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.workspace-activity-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  padding: 1px 3px 10px;
+}
+.workspace-activity-filters button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 26px;
+  padding: 3px 7px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: 11px var(--interface-font-family);
+  cursor: pointer;
+}
+.workspace-activity-filters button:hover {
+  background: var(--panel-soft);
+}
+.workspace-activity-filters button[aria-pressed='true'] {
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.workspace-activity-filters button[data-attention] svg {
+  color: var(--yellow);
+}
+.workspace-activity-filters b {
+  font-size: 10px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.workspace-activity-filters .activity-filter-clear {
+  width: 24px;
+  padding: 3px;
+  border-color: transparent;
+  margin-left: auto;
+  color: var(--muted);
+}
+.session-project-group + .session-project-group {
+  margin-top: 7px;
+}
+.task-sidebar .project-heading > span {
+  min-width: 0;
+}
+.task-sidebar .session-entry:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: -2px;
+  background: var(--panel-soft);
+}
+.transcript-sync-notice {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 9px;
+  padding: 9px 11px;
+  border: 1px solid color-mix(in srgb, var(--yellow) 22%, var(--line));
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--yellow) 6%, var(--panel));
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+.transcript-sync-notice > svg {
+  flex: 0 0 14px;
+  color: var(--yellow);
+}
+.transcript-sync-notice > span {
+  flex: 1;
+}
+.transcript-sync-notice button {
+  flex-shrink: 0;
+  border: 0;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+}
+.transcript-sync-notice button:hover {
+  background: var(--panel-soft);
+}
+@media (max-width: 740px) {
+  .transcript-sync-notice {
+    flex-wrap: wrap;
+  }
+  .transcript-sync-notice > span {
+    min-width: 180px;
+  }
+}
